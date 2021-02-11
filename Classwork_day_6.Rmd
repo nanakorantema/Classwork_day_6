@@ -6,7 +6,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(primer.data)
-install.packages("tidyverse")
+library(usethis)
+install.packages(tidyverse)
 library(tidyverse)
 install.packages("readxl")
 library(readxl)
@@ -15,16 +16,26 @@ library(readxl)
 ## R Markdown
 
 ```{r}
-raw_data <- read_excel("/Users/Nansi/Desktop/Gov 1005/Classwork_day_6/raw_data/class_enrollment_summary_by_term_2-11-2021.xlsx")
+raw_data <- read_excel("/Users/Nansi/Desktop/Gov 1005/Classwork_day_6/raw_data/class_enrollment_summary_by_term_2-11-2021.xlsx", skip = 3)
 ```
 
 
 ```{r}
-glimpse(raw_data)
+raw_data_clean <- raw_data %>%
+  arrange(desc(Total)) %>% 
+  mutate(Course_Name = `Course Name`) %>% 
+    select(Course_Name, Total) 
+
+
+  
+   
+      
 ```
 
 
 ```{r}
-summary(raw_data)
+ggplot(data = raw_data_clean,
+       mapping = aes(x = Course_Name )) +
+  geom_bar()
 ```
 
