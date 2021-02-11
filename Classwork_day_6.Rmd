@@ -15,6 +15,16 @@ library(readxl)
 ## R Markdown
 
 ```{r}
+raw_data <- read_excel("/Users/Nansi/Desktop/Gov 1005/Classwork_day_6/raw_data/class_enrollment_summary_by_term_2-11-2021.xlsx")
+```
 
+
+```{r}
+glimpse(raw_data)
+```
+
+
+```{r}
+summary(raw_data)
 ```
 
