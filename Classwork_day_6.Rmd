@@ -1,15 +1,14 @@
 ---
 title: "Class_day_6"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(primer.data)
-library(usethis)
-install.packages(tidyverse)
 library(tidyverse)
-install.packages("readxl")
 library(readxl)
 ```
 
@@ -21,21 +20,29 @@ raw_data <- read_excel("/Users/Nansi/Desktop/Gov 1005/Classwork_day_6/raw_data/c
 
 
 ```{r}
-raw_data_clean <- raw_data %>%
-  arrange(desc(Total)) %>% 
-  mutate(Course_Name = `Course Name`) %>% 
-    select(Course_Name, Total) 
+raw_data_clean<- raw_data %>%
+  arrange(desc(Total)) %>%
+  select('Course Name', Total) %>% 
+  slice(2:5) 
+
+glimpse(raw_data_clean)
+ggplot(data = raw_data_clean,
+       mapping = aes(x = 'Course Name')) +
+  geom_bar()
 
 
+
+ 
   
-   
-      
+  
+  
+
+ 
 ```
 
 
+
 ```{r}
-ggplot(data = raw_data_clean,
-       mapping = aes(x = Course_Name )) +
-  geom_bar()
+
 ```
 
