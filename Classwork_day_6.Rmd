@@ -10,39 +10,53 @@ knitr::opts_chunk$set(echo = TRUE)
 library(primer.data)
 library(tidyverse)
 library(readxl)
+library(janitor)
 ```
 
 ## R Markdown
 
 ```{r}
-raw_data <- read_excel("/Users/Nansi/Desktop/Gov 1005/Classwork_day_6/raw_data/class_enrollment_summary_by_term_2-11-2021.xlsx", skip = 3)
+raw_data <- read_excel("/Users/Nansi/Desktop/Gov_1005/Classwork_day_6/raw_data/class_enrollment_summary_by_term_2-11-2021.xlsx", skip = 3) %>% 
+clean_names()
 ```
 
 
 ```{r}
 raw_data_clean<- raw_data %>%
-  arrange(desc(Total)) %>%
-  select('Course Name', Total) %>% 
-  slice(2:5) 
-
-glimpse(raw_data_clean)
-ggplot(data = raw_data_clean,
-       mapping = aes(x = 'Course Name')) +
-  geom_bar()
-
-
-
- 
-  
-  
+   arrange(desc(total)) %>%
+   select("course_id", "course_name", "total") %>% 
+   drop_na()
   
 
- 
 ```
 
 
 
 ```{r}
+raw_data_clean %>% 
+  group_by(course_id, course_name) %>% 
+  summarize(enrollment = sum(total),
+            .groups = "drop") %>% 
+  arrange(desc(enrollment)) %>% 
+  slice(1:10) %>% 
+  ggplot(mapping = aes(x = fct_reorder(course_name, enrollment),
+                       y = enrollment,
+                       fill = "tangerine")) +
+         
+         geom_col() +
+   labs(title = "10 Most Popular Courses at Harvard",
+        subtitle = "Spring 2020",
+        caption = "Harvard Registrar",
+        x = "Course Title",
+        y = "Total Enrollment") +
+  coord_flip() +
+  theme_classic()+
+  scale_color_gradient()
+  
+  
+  
 
+  
+  
 ```
 
