@@ -32,7 +32,7 @@ raw_data_clean<- raw_data %>%
 
 
 ```{r}
-raw_data_clean %>% 
+enrollment_p <- raw_data_clean %>% 
   group_by(course_id, course_name) %>% 
   summarize(enrollment = sum(total),
             .groups = "drop") %>% 
@@ -49,11 +49,13 @@ raw_data_clean %>%
   coord_flip() +
   theme_economist() 
  
+ enrollment_p 
   
-  
-  
+```
 
-  
-  
+
+
+```{r}
+ggsave(filename = "enrollment.jpg", enrollment_p)
 ```
 
