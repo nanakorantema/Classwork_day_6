@@ -11,6 +11,7 @@ library(primer.data)
 library(tidyverse)
 library(readxl)
 library(janitor)
+library(ggplot2)
 ```
 
 ## R Markdown
@@ -40,18 +41,17 @@ raw_data_clean %>%
   arrange(desc(enrollment)) %>% 
   slice(1:10) %>% 
   ggplot(mapping = aes(x = fct_reorder(course_name, enrollment),
-                       y = enrollment,
-                       fill = "tangerine")) +
+                       y = enrollment)) +
          
-         geom_col() +
+         geom_col( fill = "darkred") +
    labs(title = "10 Most Popular Courses at Harvard",
-        subtitle = "Spring 2020",
+        subtitle = "Spring 2021",
         caption = "Harvard Registrar",
         x = "Course Title",
         y = "Total Enrollment") +
   coord_flip() +
-  theme_classic()+
-  scale_color_gradient()
+  theme_classic() 
+ 
   
   
   
