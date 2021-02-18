@@ -12,6 +12,7 @@ library(tidyverse)
 library(readxl)
 library(janitor)
 library(ggplot2)
+library(ggthemes)
 ```
 
 ## R Markdown
@@ -42,15 +43,14 @@ raw_data_clean %>%
   slice(1:10) %>% 
   ggplot(mapping = aes(x = fct_reorder(course_name, enrollment),
                        y = enrollment)) +
-         
          geom_col( fill = "darkred") +
    labs(title = "10 Most Popular Courses at Harvard",
         subtitle = "Spring 2021",
         caption = "Harvard Registrar",
-        x = "Course Title",
+        x = NULL,
         y = "Total Enrollment") +
   coord_flip() +
-  theme_classic() 
+  theme_economist() 
  
   
   
