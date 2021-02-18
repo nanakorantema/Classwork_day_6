@@ -1,9 +1,4 @@
----
-title: "Class_day_6"
-output:
-  html_document: default
-  pdf_document: default
----
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -28,7 +23,9 @@ raw_data_clean<- raw_data %>%
    arrange(desc(total)) %>%
    select("course_id", "course_name", "total") %>% 
    drop_na()
-  
+
+ # this data set had many columns so it was essential to narrow down the
+ # information to the categories that we are focusing on
 
 ```
 
