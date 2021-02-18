@@ -1,12 +1,12 @@
 ---
 title: "Class_day_6"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(primer.data)
 library(tidyverse)
 library(readxl)
